@@ -6,6 +6,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <?php if ($_SESSION['auth']):?>
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -14,44 +15,45 @@
 
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="<?=RUTA_ADMIN?>articulos.php">Artículos</a>
+                            <a class="dropdown-item" href="<?= RUTA_ADMIN ?>articulos.php">Artículos</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="<?=RUTA_ADMIN?>comentarios.php">Comentarios</a>
+                            <a class="dropdown-item" href="<?= RUTA_ADMIN ?>comentarios.php">Comentarios</a>
                         </li>
                     </ul>
 
                 </li>
 
 
-
+                <?php if ($_SESSION['rol_id']==1):?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=RUTA_ADMIN?>usuarios.php">Usuarios</a>
+                    <a class="nav-link" href="<?= RUTA_ADMIN ?>usuarios.php">Usuarios</a>
                 </li>
-
+                <?php endif;?>
+                <?php endif;?>
             </ul>
 
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?=RUTA_FRONT?>index.php">Inicio</a>
+                    <a class="nav-link" href="<?= RUTA_FRONT ?>index.php">Inicio</a>
                 </li>
+                <?php if ($_SESSION['auth'] == false) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= RUTA_FRONT ?>registro.php">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= RUTA_FRONT ?>acceder.php">Acceder</a>
+                    </li>
+                <?php endif; ?>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=RUTA_FRONT?>registro.php">Registrarse</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?=RUTA_FRONT?>acceder.php">Acceder</a>
-                </li>
-
-
-
-                <li class="nav-item">
-                    <p class="text-white mt-2"><i class="bi bi-person-circle"></i> </p>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="salir.php">Salir</a>
-                </li>
-
+                <?php if ($_SESSION['auth']) : ?>
+                    <li class="nav-item">
+                        <p class="text-white mt-2"><i class="bi bi-person-circle"></i> <?= $_SESSION['nombre'] ?></p>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="salir.php">Salir</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
