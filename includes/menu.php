@@ -51,7 +51,7 @@
                         <p class="text-white mt-2"><i class="bi bi-person-circle"></i> <?= $_SESSION['nombre'] ?></p>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="salir.php">Salir</a>
+                        <a class="nav-link" href="<?=RUTA_FRONT?>salir.php">Salir</a>
                     </li>
                 <?php endif; ?>
             </ul>

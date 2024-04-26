@@ -1,12 +1,43 @@
-<?php include("../includes/header.php") ?>
+<?php 
+    include("../includes/header.php"); 
+    include("../config/Mysql.php");
+    include("../modelos/Articulo.php");
+    $base = new Mysql();
+    $cx = $base->connect();
+    $articulos = new Articulo($cx);
+    if (isset($_GET['mensaje'])){
+        $mensaje = $_GET['mensaje'];
+    }
+?>
 
+<!--Imprimir el error o el mensaje -->
+<div class="row">
+    <div class="col-sm-12">
+        <?php if (isset($error)) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?= $error ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <?php if (isset($mensaje)) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?= $mensaje ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-sm-6">
         <h3>Lista de Artículos</h3>
-    </div> 
+    </div> <!--Opción 1 es Altas, opción 2 es editar-->
     <div class="col-sm-4 offset-2">
-        <a href="crear_articulo.php" class="btn btn-success w-100"><i class="bi bi-plus-circle-fill"></i> Nuevo Artículo</a>
+        <a href="gestionArticulo.php?id=0&opcion=1" class="btn btn-success w-100"><i class="bi bi-plus-circle-fill"></i> Nuevo Artículo</a>
     </div>    
 </div>
 <div class="row mt-2 caja">
@@ -23,20 +54,20 @@
                     </tr>
                 </thead>
                 <tbody>
-             
+                    <?php foreach($articulos->listar($_SESSION['id'],$_SESSION['rol_id']) as $articulo):?>        
                     <tr>
-                        <td>1</td>
-                        <td>test</td>
+                        <td><?=$articulo->id?></td>
+                        <td><?=$articulo->titulo?></td>
                         <td>
-                            <img class="img/articulos/" style="width:180px;">
+                            <img src="<?=RUTA_FRONT?>/img/articulos/<?=$articulo->imagen?>" style="width:180px;">
                         </td>
-                        <td>test</td>
-                        <td>test</td>                      
+                        <td><?=$articulo->texto?></td>
+                        <td><?=$articulo->fecha_creacion?></td>                      
                         <td>
-                        <a href="editar_articulo.php" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a>                       
+                        <a href="gestionArticulo.php?id=<?=$articulo->id?>&opcion=2" class="btn btn-warning"><i class="bi bi-pencil-fill"></i></a>                       
                         </td>
                     </tr>
-               
+                    <?php endforeach;?>
                 </tbody>       
             </table>
     </div>

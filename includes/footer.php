@@ -5,8 +5,8 @@
         <p class="float-end mb-1">
             <a href="#">Volver arriba</a>
         </p>
-        <p class="mb-1 text-white">Blog Desarrollado en Angular</p>
-        <p class="mb-0 text-white">Autor <a href="#">José Braulio Flores Mtz</a></p>
+        <p class="mb-1 text-white">Blog Desarrollado para Programación Web</p>
+        <p class="mb-0 text-white">Autor <a href="#">Tu Nombre</a></p>
       </div>
   </footer>
 
