@@ -1,5 +1,6 @@
 <?php
   include("./config/config.php");
+  include("./helpers/helpers_formato.php");
   session_start();
 ?>
 <!doctype html>

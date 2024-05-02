@@ -1,4 +1,15 @@
-<?php include("../includes/header.php") ?>
+<?php 
+    include("../includes/header.php");
+    include("../config/Mysql.php");
+    include("../modelos/Comentario.php");
+    $base = new Mysql();
+    $cx = $base->connect();
+    $Comentario = new Comentario($cx);
+    if (isset($_GET['id'])){
+        $article_id = $_GET['id'];
+        echo "<h1>$article_id</h1>";
+    }
+?>
 
 <div class="row">
           
