@@ -100,10 +100,10 @@
 
     <div class="row">
         <h3 class="text-center mt-5">Comentarios</h3>
-
-        <h4><i class="bi bi-person-circle"></i> juangarcia@gmail.com</h4>
-        <p>texto comentario demo</p>
-
+        <?php foreach($comentario->comentarios_articulos($article_id) as $c):?>    
+            <h4><i class="bi bi-person-circle"></i><?=$c->autor?></h4>
+            <p><?=$c->comentario?></p>
+        <?php endforeach;?>
     </div>
 
 </div>

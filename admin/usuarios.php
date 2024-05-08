@@ -1,8 +1,8 @@
 <?php
-    if (!$_SESSION['auth']){
+    /*if (!$_SESSION['auth']){
         header('Location: ../index.php');
         die();
-    }
+    }*/
     include("../includes/header.php"); 
     include("../config/Mysql.php");
     include("../modelos/Usuario.php");

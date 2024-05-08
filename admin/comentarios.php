@@ -5,8 +5,31 @@
     $base = new Mysql();
     $cx = $base->connect();
     $comentarios = new Comentario($cx);
+    if (isset($_GET['mensaje'])){
+        $mensaje = $_GET['mensaje'];
+    }
 ?>
-
+<!--Imprimir el error o el mensaje -->
+<div class="row">
+    <div class="col-sm-12">
+        <?php if (isset($error)) : ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><?= $error ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <?php if (isset($mensaje)) : ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><?= $mensaje ?></strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
 <div class="row">
     <div class="col-sm-6">
         <h3>Lista de Comentarios</h3>
@@ -27,7 +50,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($comentarios->listar() as $comment):?>
+                    <?php foreach ($comentarios->listar($_SESSION['id'],$_SESSION['rol_id']) as $comment):?>
                     <tr>
                         <td><?=$comment->id?></td>
                         <td><?=$comment->comentario?></td>

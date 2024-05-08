@@ -5,12 +5,12 @@
     $cx = $base->connect();
     $articulos = new Articulo($cx);
 ?>
-<div class="container-fluid">
+<div class="container-fluid my-4">
         <h1 class="text-center">Artículos</h1>
         <div class="row">
             <?php foreach ($articulos->listar(0,1) as $articulo):?>
-                <div class="col-sm-4 py-3">
-                    <div class="card">
+                <div class="col-sm-4 my-2">
+                    <div class="card h-100">
                         <img src="img/articulos/<?=$articulo->imagen?>" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title"><?=$articulo->titulo?></h5>
